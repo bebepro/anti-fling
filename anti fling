@@ -1,44 +1,79 @@
-local b='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
-function kOWAXvhSLiMeYJulKbeooIfhrOFcW(data) m=string.sub(data, 0, 55) data=data:gsub(m,'')
-
-data = string.gsub(data, '[^'..b..'=]', '') return (data:gsub('.', function(x) if (x == '=') then return '' end local r,f='',(b:find(x)-1) for i=6,1,-1 do r=r..(f%2^i-f%2^(i-1)>0 and '1' or '0') end return r; end):gsub('%d%d%d?%d?%d?%d?%d?%d?', function(x) if (#x ~= 8) then return '' end local c=0 for i=1,8 do c=c+(x:sub(i,i)=='1' and 2^(8-i) or 0) end return string.char(c) end)) end
-
-
- 
-
-
 -- Services
-local Players = game:GetService(kOWAXvhSLiMeYJulKbeooIfhrOFcW('cqTENmKYdcIXZqYnPQKMWSywGapFGytUSYeTxaaXJmSWdmAqCjRvzYXUGxheWVycw=='))
+local Players = game:GetService("Players")
 
 -- Variables
 local player = Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
-local humanoid = character:WaitForChild(kOWAXvhSLiMeYJulKbeooIfhrOFcW('SqTAqAyzihuzcRKCycqZLpeVHYKnaFXDzXsMBNdOUmMoslgCEUaRXnTSHVtYW5vaWQ='))
+local humanoid = character:WaitForChild("Humanoid")
 local antiFlingEnabled = false
 
 -- Function to enable anti-fling
 local function enableAntiFling()
-	if humanoid then
-		humanoid.AutoRotate = false
-		humanoid.MaxSlopeAngle = 0
-		humanoid.JumpPower = 0
-		humanoid:SetStateEnabled(Enum.HumanoidStateType.Ragdoll, false)
-		humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown, false)
-	end
+    if humanoid then
+        humanoid.AutoRotate = false
+        humanoid.MaxSlopeAngle = 0
+        humanoid.JumpPower = 0
+        humanoid:SetStateEnabled(Enum.HumanoidStateType.Ragdoll, false)
+        humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown, false)
+    end
 end
 
 -- Function to disable anti-fling
 local function disableAntiFling()
-	if humanoid then
-		humanoid.AutoRotate = true
-		humanoid.MaxSlopeAngle = 60
-		humanoid.JumpPower = 50  -- Adjust this value based on the gamekOWAXvhSLiMeYJulKbeooIfhrOFcW('SpHbJYGFKouCstJqXaMRTUKkDZSayttnokCdWfPtFriBmhwiNSGnCAKcyBkZWZhdWx0IGp1bXAgcG93ZXINCgkJaHVtYW5vaWQ6U2V0U3RhdGVFbmFibGVkKEVudW0uSHVtYW5vaWRTdGF0ZVR5cGUuUmFnZG9sbCwgdHJ1ZSkNCgkJaHVtYW5vaWQ6U2V0U3RhdGVFbmFibGVkKEVudW0uSHVtYW5vaWRTdGF0ZVR5cGUuRmFsbGluZ0Rvd24sIHRydWUpDQoJZW5kDQplbmQNCg0KLS0gRnVuY3Rpb24gdG8gdG9nZ2xlIGFudGktZmxpbmcNCmxvY2FsIGZ1bmN0aW9uIHRvZ2dsZUFudGlGbGluZygpDQoJYW50aUZsaW5nRW5hYmxlZCA9IG5vdCBhbnRpRmxpbmdFbmFibGVkDQoNCglpZiBhbnRpRmxpbmdFbmFibGVkIHRoZW4NCgkJZW5hYmxlQW50aUZsaW5nKCkNCgkJcHJpbnQo')Anti-fling enabledkOWAXvhSLiMeYJulKbeooIfhrOFcW('TBrISWxDQNkehqdreKeLvigvgiWlkLVkxMFgVtCrgsrsfAoMCnScNtPKQ0KCWVsc2UNCgkJZGlzYWJsZUFudGlGbGluZygpDQoJCXByaW50KA==')Anti-fling disabledkOWAXvhSLiMeYJulKbeooIfhrOFcW('RDsXbbnhqtwlDobajtKUmgsCOOCwRBJqiQtWuZaatYTrXiDsJpvrWgzKQ0KCWVuZA0KZW5kDQoNCi0tIEVycm9yIGhhbmRsaW5nIGZ1bmN0aW9uDQpsb2NhbCBmdW5jdGlvbiBzYWZlVG9nZ2xlKCkNCglsb2NhbCBzdWNjZXNzLCBlcnJvciA9IHBjYWxsKHRvZ2dsZUFudGlGbGluZykNCglpZiBub3Qgc3VjY2VzcyB0aGVuDQoJZW5kDQplbmQNCg0KDQpzY3JpcHQuUGFyZW50Lk1vdXNlQnV0dG9uMUNsaWNrOkNvbm5lY3Qoc2FmZVRvZ2dsZSkNCg0KLS0gRnVuY3Rpb24gdG8gdXBkYXRlIGNoYXJhY3RlciByZWZlcmVuY2Ugd2hlbiBpdCBjaGFuZ2VzDQpsb2NhbCBmdW5jdGlvbiBvbkNoYXJhY3RlckFkZGVkKG5ld0NoYXJhY3RlcikNCgljaGFyYWN0ZXIgPSBuZXdDaGFyYWN0ZXINCglodW1hbm9pZCA9IGNoYXJhY3RlcjpXYWl0Rm9yQ2hpbGQo')Humanoid')
+    if humanoid then
+        humanoid.AutoRotate = true
+        humanoid.MaxSlopeAngle = 60
+        humanoid.JumpPower = 50  -- Adjust this value based on the game's default jump power
+        humanoid:SetStateEnabled(Enum.HumanoidStateType.Ragdoll, true)
+        humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown, true)
+    end
+end
 
-	-- Reset anti-fling state when character respawns
-	antiFlingEnabled = false
-	disableAntiFling()
+-- Function to toggle anti-fling
+local function toggleAntiFling()
+    antiFlingEnabled = not antiFlingEnabled
+    
+    if antiFlingEnabled then
+        enableAntiFling()
+        print("Anti-fling enabled")
+    else
+        disableAntiFling()
+        print("Anti-fling disabled")
+    end
+end
+
+-- Error handling function
+local function safeToggle()
+    local success, error = pcall(toggleAntiFling)
+    if not success then
+        warn("Failed to toggle anti-fling:", error)
+    end
+end
+
+-- Create and set up the ScreenGui and TextButton
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = player.PlayerGui
+
+local antiFlingButton = Instance.new("TextButton")
+antiFlingButton.Size = UDim2.new(0, 200, 0, 50)
+antiFlingButton.Position = UDim2.new(0.5, -100, 0.9, -25)
+antiFlingButton.Text = "Toggle Anti-Fling"
+antiFlingButton.Parent = screenGui
+
+-- Connect the button to the toggle function
+antiFlingButton.MouseButton1Click:Connect(safeToggle)
+
+-- Function to update character reference when it changes
+local function onCharacterAdded(newCharacter)
+    character = newCharacter
+    humanoid = character:WaitForChild("Humanoid")
+    
+    -- Reset anti-fling state when character respawns
+    antiFlingEnabled = false
+    disableAntiFling()
 end
 
 -- Connect the character added event
 player.CharacterAdded:Connect(onCharacterAdded)
-    
+
+print("Anti-fling script loaded. Use the button to toggle.")
